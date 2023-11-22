@@ -4,7 +4,7 @@
 kubectl create namespace plg-stack
 
 #Add Loki’s Helm Chart repository:
-helm repo add plg https://grafana.github.io/loki/charts
+helm repo add plg https://grafana.github.io/helm-charts
 
 #Run the following command to update the repository:
 helm repo update
@@ -14,7 +14,7 @@ helm upgrade --install loki plg/loki-stack --namespace=plg-stack --set grafana.e
 #This will install Loki, Grafana and Promtail into your Kubernetes cluster.
 
 
-# helm install grafana plg/grafana --namespace=plg-stack
+# helm install loki-grafana plg/grafana --namespace=plg-stack
 
 #As "grafana.enable=true" it looks for admin-user, admin-password key in loki-grafana secret which is not set by default.
 #Once all service is up, we can see loki-grafana will fail with above error
