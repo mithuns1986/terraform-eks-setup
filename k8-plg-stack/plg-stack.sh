@@ -4,13 +4,13 @@
 kubectl create namespace plg-stack
 
 #Add Loki’s Helm Chart repository:
-helm repo add plg https://grafana.github.io/helm-charts
+helm repo add plg https://grafana.github.io/loki/charts
 
 #Run the following command to update the repository:
 helm repo update
 
 #Deploy the Loki stack:
-helm upgrade --install plg-stack plg/loki-stack --namespace=plg-stack --set grafana.enabled=true
+helm upgrade --install loki plg/loki-stack --namespace=plg-stack --set grafana.enabled=true
 #This will install Loki, Grafana and Promtail into your Kubernetes cluster.
 
 
@@ -21,7 +21,7 @@ helm upgrade --install plg-stack plg/loki-stack --namespace=plg-stack --set graf
 #Manually edit the loki-grafana secert and add 'admin-user: <username>' and 'admin-password: <password>' in data section.
 
 #Retrieve the password to log into Grafana:
-kubectl get secret loki --namespace=plg-stack -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+kubectl get secret loki-grafana --namespace=plg-stack -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 
 #HANDLED BY k8 ingress-nginx
 # #Finally, execute the command below to access the Grafana UI.
